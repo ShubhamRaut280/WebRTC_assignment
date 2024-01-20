@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "420769153854",
+    "project_id": "webrtc-videochat-e5b9a",
+    "storage_bucket": "webrtc-videochat-e5b9a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:420769153854:android:0bb01ae5035a542d46626f",
+        "android_client_info": {
+          "package_name": "com.shubham.webrtc_videochat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAZBbuTeZsRcd1SCCzqvazIPG4pnRxEkw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
