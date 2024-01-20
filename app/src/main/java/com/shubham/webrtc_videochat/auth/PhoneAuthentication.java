@@ -23,11 +23,13 @@ import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.shubham.webrtc_videochat.databinding.ActivityPhoneAuthenticationBinding;
 import com.shubham.webrtc_videochat.HomeActivity;
+import com.shubham.webrtc_videochat.helperFunctions;
 
 import java.util.concurrent.TimeUnit;
 
 public class PhoneAuthentication extends AppCompatActivity {
      String verificationId;
+     helperFunctions func = new helperFunctions();
     ActivityPhoneAuthenticationBinding binding;
     FirebaseAuth auth = FirebaseAuth.getInstance();
 
@@ -39,17 +41,27 @@ public class PhoneAuthentication extends AppCompatActivity {
 
 
        binding.getotp.setOnClickListener(view -> {
-           String  phonenumber = binding.inputMobileno.getText().toString();
-           if (phonenumber == null || phonenumber.length() != 10) {
-               Toast.makeText(PhoneAuthentication.this, "Please enter correct number", Toast.LENGTH_SHORT).show();
+        // if connected to internet
+           if(func.isConnectedToInternet(this))
+           {
+               String  phonenumber = binding.inputMobileno.getText().toString();
+               if (phonenumber == null || phonenumber.length() != 10) {
+                   Toast.makeText(PhoneAuthentication.this, "Please enter correct number", Toast.LENGTH_SHORT).show();
+               }
+               else
+               {
+                   sendVerificationCode(phonenumber);
+                   Toast.makeText(PhoneAuthentication.this, "Sending OTP", Toast.LENGTH_SHORT).show();
+
+
+               }
            }
            else
            {
-               sendVerificationCode(phonenumber);
-               Toast.makeText(PhoneAuthentication.this, "Sending OTP", Toast.LENGTH_SHORT).show();
-
-
+               Toast.makeText(this, "Please connect to internet before login.", Toast.LENGTH_SHORT).show();
            }
+
+
        });
 
        binding.submitOTP.setOnClickListener(view -> {
@@ -82,7 +94,8 @@ public class PhoneAuthentication extends AppCompatActivity {
         @Override
         public void onVerificationFailed(@NonNull FirebaseException e) {
 
-            Toast.makeText(PhoneAuthentication.this, "Verification Failed : "+e, Toast.LENGTH_LONG).show();
+            Toast.makeText(PhoneAuthentication.this, "Verification Failed : "+e.getMessage(), Toast.LENGTH_LONG).show();
+            Log.d(TAG, "onVerificationFailed: error in verification : "+ e+" message: "+ e.getMessage());
         }
 
         @Override

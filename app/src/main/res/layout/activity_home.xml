@@ -6,4 +6,100 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/main"
+        app:menu="@menu/toolbar_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lora"
+            android:text="Profile"
+            android:textStyle="bold"
+            android:layout_marginStart="40dp"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="65dp">
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lora"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:paddingStart="10dp"
+            android:textColor="@color/black"
+            android:paddingEnd="10dp"
+            android:text="Name of user" />
+
+        <TextView
+            android:id="@+id/userphone"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/username"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lora"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:text="Phone no" />
+
+        <Button
+            android:id="@+id/getLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/userphone"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="Get Your Current Location" />
+
+        <fragment
+            android:id="@+id/google_map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_below="@id/getLocation"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/goToVideoChat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="25dp"
+            android:layout_marginEnd="25dp"
+            android:backgroundTint="@color/main"
+            android:clickable="true"
+            app:srcCompat="@drawable/front" />
+
+
+    </RelativeLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
