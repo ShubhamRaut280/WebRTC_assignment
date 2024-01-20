@@ -12,20 +12,13 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationRequest;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Looper;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -33,14 +26,13 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.shubham.webrtc_videochat.auth.PhoneAuthentication;
 import com.shubham.webrtc_videochat.databinding.ActivityHomeBinding;
-
-import org.xml.sax.helpers.LocatorImpl;
+import com.shubham.webrtc_videochat.utils.RoundedCornerTransformation;
+import com.shubham.webrtc_videochat.utils.helperFunctions;
+import com.squareup.picasso.Picasso;
 
 
 public class HomeActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -70,6 +62,8 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (user.getDisplayName().isEmpty())
             Toast.makeText(this, "Please update your profile first!!", Toast.LENGTH_SHORT).show();
         else {
+            Picasso.get().load(user.getPhotoUrl()).transform(new RoundedCornerTransformation(50)).into(binding.profilephoto);
+            binding.profilephotoprogressbar.setVisibility(View.GONE);
             binding.username.setText(user.getDisplayName());
             binding.userphone.setText("Phone : " + user.getPhoneNumber());
         }
@@ -91,6 +85,8 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (user.getDisplayName().isEmpty())
             Toast.makeText(this, "Please update your profile first!!", Toast.LENGTH_SHORT).show();
         else {
+            Picasso.get().load(user.getPhotoUrl()).transform(new RoundedCornerTransformation(50)).into(binding.profilephoto);
+            binding.profilephotoprogressbar.setVisibility(View.GONE);
             binding.username.setText(user.getDisplayName());
             binding.userphone.setText("Phone : " + user.getPhoneNumber());
         }

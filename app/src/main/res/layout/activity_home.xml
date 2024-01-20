@@ -35,6 +35,13 @@
         android:layout_marginTop="?attr/actionBarSize"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="65dp">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/profilephoto"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="10dp"
+            />
 
         <TextView
             android:id="@+id/username"
@@ -43,8 +50,9 @@
             android:fontFamily="@font/lora"
             android:textStyle="bold"
             android:textSize="16sp"
+            android:layout_toEndOf="@id/profilephoto"
             android:layout_marginTop="10dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
             android:layout_marginEnd="20dp"
             android:paddingStart="10dp"
             android:textColor="@color/black"
@@ -61,7 +69,8 @@
             android:textColor="@color/black"
             android:textSize="16sp"
             android:layout_marginTop="10dp"
-            android:layout_marginStart="20dp"
+            android:layout_toEndOf="@id/profilephoto"
+            android:layout_marginStart="10dp"
             android:layout_marginEnd="20dp"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
@@ -98,6 +107,17 @@
             android:backgroundTint="@color/main"
             android:clickable="true"
             app:srcCompat="@drawable/front" />
+
+        <ProgressBar
+            android:id="@+id/profilephotoprogressbar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="30dp"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
     </RelativeLayout>

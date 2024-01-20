@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
+    <ProgressBar
+        android:id="@+id/profileupdateProgressbar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -38,106 +48,115 @@
     </androidx.appcompat.widget.Toolbar>
 
     <RelativeLayout
+        android:id="@+id/profileupdateRelative"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:id="@+id/profiledp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100dp"
-            android:id="@+id/profiledp"
-            android:src="@drawable/user"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            tools:srcCompat="@tools:sample/avatars"
 
             />
+
+        <ImageButton
+            android:id="@+id/imagePicker"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="-30dp"
+            android:layout_marginTop="190dp"
+            android:layout_toEndOf="@+id/profiledp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/baseline_add_a_photo_24" />
 
         <TextView
+            android:id="@+id/nameText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Name"
+            android:layout_below="@id/profiledp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="40dp"
             android:fontFamily="@font/lora"
-            android:textStyle="bold"
+            android:text="Name"
             android:textColor="@color/main"
             android:textSize="20sp"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:id="@+id/nameText"
-            android:layout_below="@id/profiledp"
-            />
+            android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_below="@id/nameText"
-            android:id="@+id/username"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/round_theme_for_edittext"
             android:layout_marginStart="40dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="40dp"
+            android:background="@drawable/round_theme_for_edittext"
+            android:fontFamily="@font/lora"
+            android:hint="Enter your name"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
-            android:fontFamily="@font/lora"
-            android:textColor="@color/black"
-            android:hint="Enter your name"
-            />
+            android:textColor="@color/black" />
 
         <TextView
+            android:id="@+id/contacttext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/contacttext"
-            android:text="Phone Number"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginTop="15dp"
             android:layout_below="@id/username"
-            android:textColor="@color/main"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="40dp"
             android:fontFamily="@font/lora"
-            android:textStyle="bold"
+            android:text="Phone Number"
+            android:textColor="@color/main"
             android:textSize="20sp"
+            android:textStyle="bold"
 
             />
 
         <TextView
+            android:id="@+id/phonenumber"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:id="@+id/phonenumber"
             android:layout_below="@id/contacttext"
-            android:background="@drawable/round_theme_for_edittext"
             android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
             android:layout_marginTop="5dp"
-            android:textSize="18sp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/round_theme_for_edittext"
             android:gravity="center_vertical"
-            android:paddingEnd="15dp"
             android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:textSize="18sp"
 
 
             />
-
-
-
 
 
         <Button
+            android:id="@+id/update"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:text="Update Details"
-            android:id="@+id/update"
             android:layout_below="@id/phonenumber"
-            android:layout_marginTop="30dp"
             android:layout_centerHorizontal="true"
-            android:textSize="18sp"
-            android:textAllCaps="false"
+            android:layout_marginTop="30dp"
             android:fontFamily="@font/lora"
-            android:textStyle="bold"
-            />
-
-
+            android:text="Update Details"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
 
     </RelativeLayout>

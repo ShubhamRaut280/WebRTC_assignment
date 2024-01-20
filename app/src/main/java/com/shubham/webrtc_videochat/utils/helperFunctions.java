@@ -1,4 +1,4 @@
-package com.shubham.webrtc_videochat;
+package com.shubham.webrtc_videochat.utils;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +7,8 @@ import android.location.LocationRequest;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.provider.Settings;
+
+import com.google.firebase.auth.FirebaseUser;
 
 public class helperFunctions {
 
@@ -34,5 +36,7 @@ public class helperFunctions {
         context.startActivity(enableGps);
 
     }
+
+
 
 }
