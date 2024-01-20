@@ -22,7 +22,7 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.shubham.webrtc_videochat.databinding.ActivityPhoneAuthenticationBinding;
-import com.shubham.webrtc_videochat.HomeActivity;
+import com.shubham.webrtc_videochat.activities.HomeActivity;
 import com.shubham.webrtc_videochat.utils.helperFunctions;
 
 import java.util.concurrent.TimeUnit;

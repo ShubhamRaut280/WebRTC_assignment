@@ -1,4 +1,4 @@
-package com.shubham.webrtc_videochat;
+package com.shubham.webrtc_videochat.activities;
 
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
@@ -28,6 +28,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.shubham.webrtc_videochat.R;
 import com.shubham.webrtc_videochat.auth.PhoneAuthentication;
 import com.shubham.webrtc_videochat.databinding.ActivityHomeBinding;
 import com.shubham.webrtc_videochat.utils.RoundedCornerTransformation;
