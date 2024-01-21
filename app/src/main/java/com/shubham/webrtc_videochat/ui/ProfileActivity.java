@@ -1,4 +1,4 @@
-package com.shubham.webrtc_videochat.activities;
+package com.shubham.webrtc_videochat.ui;
 
 import static android.view.View.GONE;
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
@@ -36,6 +36,12 @@ public class ProfileActivity extends AppCompatActivity {
         binding = ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        init();
+
+    }
+
+    private void init()
+    {
         auth = FirebaseAuth.getInstance();
         FirebaseUser user = auth.getCurrentUser();
 
@@ -61,13 +67,14 @@ public class ProfileActivity extends AppCompatActivity {
             {
                 binding.username.setText(username);
             }
-             }else
+        }else
             Toast.makeText(this, "Please connect to internet!! unable to load your details..", Toast.LENGTH_SHORT).show();
 
         binding.back.setOnClickListener(view -> {
             startActivity(new Intent(ProfileActivity.this, HomeActivity.class));
             finish();
         });
+
 
         //update profile
         binding.update.setOnClickListener(view -> {
@@ -100,8 +107,6 @@ public class ProfileActivity extends AppCompatActivity {
             // Launch the image picker activity using the launcher
             imagePickerLauncher.launch(intent);
         });
-
-
 
     }
 

@@ -1,12 +1,7 @@
-package com.shubham.webrtc_videochat.activities;
+package com.shubham.webrtc_videochat.ui;
 
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -19,6 +14,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -28,9 +28,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.permissionx.guolindev.PermissionX;
 import com.shubham.webrtc_videochat.R;
 import com.shubham.webrtc_videochat.auth.PhoneAuthentication;
 import com.shubham.webrtc_videochat.databinding.ActivityHomeBinding;
+import com.shubham.webrtc_videochat.repository.MainRepository;
 import com.shubham.webrtc_videochat.utils.RoundedCornerTransformation;
 import com.shubham.webrtc_videochat.utils.helperFunctions;
 import com.squareup.picasso.Picasso;
@@ -40,6 +42,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     helperFunctions fun = new helperFunctions();
     private static final int PER_REQ_CODE = 1000;
     FirebaseAuth auth;
+    MainRepository mrepo;
     SupportMapFragment supportMapFragment;
     ActivityHomeBinding binding;
 
@@ -49,7 +52,11 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+         init();
+    }
 
+
+    private  void init(){
         // setting custom toolbar
         Toolbar toolbar = binding.toolbar;
         setSupportActionBar(toolbar);
@@ -60,13 +67,15 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         auth = FirebaseAuth.getInstance();
         FirebaseUser user = auth.getCurrentUser();
-        if (user.getDisplayName().isEmpty())
+        String name = user.getDisplayName().toString();
+        binding.userphone.setText("Phone : " + user.getPhoneNumber());
+
+        if (name.isEmpty())
             Toast.makeText(this, "Please update your profile first!!", Toast.LENGTH_SHORT).show();
         else {
             Picasso.get().load(user.getPhotoUrl()).transform(new RoundedCornerTransformation(50)).into(binding.profilephoto);
             binding.profilephotoprogressbar.setVisibility(View.GONE);
             binding.username.setText(user.getDisplayName());
-            binding.userphone.setText("Phone : " + user.getPhoneNumber());
         }
 
         binding.getLocation.setOnClickListener(view -> {
@@ -77,7 +86,30 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Toast.makeText(this, "Please connect to internet.", Toast.LENGTH_SHORT).show();
         });
 
+        // floating button to go video chat
+            mrepo = MainRepository.getInstance();
+            binding.goToVideoChat.setOnClickListener(v -> {
+                PermissionX.init(this)
+                        .permissions(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO)
+                        .request((allGranted, grantedList, deniedList) -> {
+                            if (allGranted) {
+                                //login to firebase here
+                                mrepo.login(
+                                        user.getDisplayName(), getApplicationContext(), () -> {
+                                            //if success then we want to move to call activity
+                                            startActivity(new Intent(HomeActivity.this, CallActivity.class));
+                                        }
+                                );
+                            }
+                        });
+
+
+            });
+
+
+
     }
+
 
     @Override
     protected void onResume() {
@@ -197,4 +229,5 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         return true;
     }
+
 }

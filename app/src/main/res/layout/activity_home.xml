@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.HomeActivity">
+    tools:context=".ui.HomeActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -57,7 +57,7 @@
             android:paddingStart="10dp"
             android:textColor="@color/black"
             android:paddingEnd="10dp"
-            android:text="Name of user" />
+            android:text="Please update profile first" />
 
         <TextView
             android:id="@+id/userphone"
@@ -106,7 +106,7 @@
             android:layout_marginEnd="25dp"
             android:backgroundTint="@color/main"
             android:clickable="true"
-            app:srcCompat="@drawable/front" />
+            app:srcCompat="@drawable/videoicon" />
 
         <ProgressBar
             android:id="@+id/profilephotoprogressbar"

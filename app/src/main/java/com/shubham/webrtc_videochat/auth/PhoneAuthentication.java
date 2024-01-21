@@ -22,7 +22,7 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.shubham.webrtc_videochat.databinding.ActivityPhoneAuthenticationBinding;
-import com.shubham.webrtc_videochat.activities.HomeActivity;
+import com.shubham.webrtc_videochat.ui.HomeActivity;
 import com.shubham.webrtc_videochat.utils.helperFunctions;
 
 import java.util.concurrent.TimeUnit;
@@ -38,43 +38,45 @@ public class PhoneAuthentication extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityPhoneAuthenticationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        init();
+
+   }
+
+    private  void init()
+    {
+
+        binding.getotp.setOnClickListener(view -> {
+            // if connected to internet
+            if(func.isConnectedToInternet(this))
+            {
+                String  phonenumber = binding.inputMobileno.getText().toString();
+                if (phonenumber == null || phonenumber.length() != 10) {
+                    Toast.makeText(PhoneAuthentication.this, "Please enter correct number", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    sendVerificationCode(phonenumber);
+                    Toast.makeText(PhoneAuthentication.this, "Sending OTP", Toast.LENGTH_SHORT).show();
 
 
-       binding.getotp.setOnClickListener(view -> {
-        // if connected to internet
-           if(func.isConnectedToInternet(this))
-           {
-               String  phonenumber = binding.inputMobileno.getText().toString();
-               if (phonenumber == null || phonenumber.length() != 10) {
-                   Toast.makeText(PhoneAuthentication.this, "Please enter correct number", Toast.LENGTH_SHORT).show();
-               }
-               else
-               {
-                   sendVerificationCode(phonenumber);
-                   Toast.makeText(PhoneAuthentication.this, "Sending OTP", Toast.LENGTH_SHORT).show();
+                }
+            }
+            else
+            {
+                Toast.makeText(this, "Please connect to internet before login.", Toast.LENGTH_SHORT).show();
+            }
 
 
-               }
-           }
-           else
-           {
-               Toast.makeText(this, "Please connect to internet before login.", Toast.LENGTH_SHORT).show();
-           }
+        });
 
-
-       });
-
-       binding.submitOTP.setOnClickListener(view -> {
-           String otp = binding.inputOTP.getText().toString();
-           if (otp == null ) {
-               Toast.makeText(PhoneAuthentication.this, "Please enter OTP", Toast.LENGTH_SHORT).show();
-           } else{
-               verifyCode(otp);
-           }
-       });
-
-
-
+        binding.submitOTP.setOnClickListener(view -> {
+            String otp = binding.inputOTP.getText().toString();
+            if (otp == null ) {
+                Toast.makeText(PhoneAuthentication.this, "Please enter OTP", Toast.LENGTH_SHORT).show();
+            } else{
+                verifyCode(otp);
+            }
+        });
 
     }
 

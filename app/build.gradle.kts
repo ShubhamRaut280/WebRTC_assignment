@@ -43,6 +43,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.android.gms:play-services-maps:18.2.0")
     implementation("com.google.android.gms:play-services-cast-framework:21.4.0")
+    implementation("com.google.firebase:firebase-database:20.3.0")
     testImplementation("junit:junit:4.13.2")
     implementation("com.google.android.gms:play-services-location:21.0.1")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -51,6 +52,10 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation ("com.squareup.picasso:picasso:2.8")
     implementation ("com.google.firebase:firebase-storage")
+    implementation ("com.google.firebase:firebase-database-ktx:20.2.2")
+    implementation ("com.google.code.gson:gson:2.10.1")
+    implementation ("com.mesibo.api:webrtc:1.0.5")
+    implementation ("com.guolindev.permissionx:permissionx:1.6.1")
 
 
 }
